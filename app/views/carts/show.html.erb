@@ -1,0 +1,44 @@
+<h1>Shopping cart</h1>
+
+<% if !@order_item.nil? && @order_item.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+    	<% @order_item.errors.full_messages.each do |msg| %>
+      	<li><%= msg %></li>
+    	<% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<% if @order_items.count == 0 %>
+	<p>There are no items in your shopping cart. 
+		Please <%= link_to "go back", books_path %> and add some items to your cart.</p>
+<% else %>
+	<table class="table table-hover">
+    
+    <thead>
+      <tr>
+        <th>BOOK</th>
+        <th>PRICE</th>
+        <th>QTY</th>
+        <th>TOTAL</th>
+      </tr>
+    </thead>
+
+    <tbody>
+	    <% @order_items.each do |order_item| %>
+	      <tr>
+	        <td>
+	        	<h3><%= order_item.book.title %></h3>
+	        	<p><%= order_item.book.description %></p>
+	        </td>
+	        <td><strong>$<%= order_item.book.price %></strong></td>
+	        <td>-</td>
+	        <td>$<%= order_item.book.price %></td>
+	      </tr>
+	     <% end %>
+    </tbody>
+
+  </table>
+<% end %>

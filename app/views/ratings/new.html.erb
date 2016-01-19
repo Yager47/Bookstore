@@ -1,0 +1,27 @@
+<h1>Add review for <%= link_to @book.title, book_path(@book) %></h1>
+
+<%= form_for([@book, @rating]) do |f| %>
+  <% if @rating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% @rating.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.text_field :value %>
+  </div>
+  <div class="field">
+    <%= f.label :review %><br>
+    <%= f.text_area :review %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
