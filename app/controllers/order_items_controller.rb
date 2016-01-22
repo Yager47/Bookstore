@@ -1,31 +1,40 @@
 class OrderItemsController < ApplicationController
-	before_action :set_order
-	before_action :set_order_item, only: [:update, :destroy]
+  before_action :set_order
+  before_action :set_order_item, only: [:update, :destroy]
 
   def create
-  	@order_item = @order.order_items.new(order_item_params)
-  	@order.save
-	end
+    if @order_item = @order.order_items.find_by(book_id: session[:order_item_book])
+      # @order_item.quantity += params[:quantity].to_i
+      @order_item.update(order_item_params)
+    else
+      @order_item = @order.order_items.new(order_item_params)
+      @order_item.book_id = session[:order_item_book]
+    end
+    @order.save
+    redirect_to cart_url
+  end
 
   def update
-  	@order_item.update(order_item_params)
-  	@order.save
+    @order_item.update(order_item_params)
+    @order.save
+    redirect_to cart_url
   end
 
   def destroy
-  	@order_item.destroy
+    @order_item.destroy
+    redirect_to cart_url
   end
 
   private
-  	def set_order
+    def set_order
   		@order = current_order
-  	end
+    end
 
   	def set_order_item
   		@order_item = @order.order_items.find(params[:id])
   	end
 
   	def order_item_params
-  		params.require(:order_item).permit(:quantity, :book_id)
+  		params.require(:order_item).permit(:quantity)
   	end
 end

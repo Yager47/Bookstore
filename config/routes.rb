@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
 	resource :cart, only: [:show]
 	
+	get 'cart/clear', to: 'carts#clear', as: 'clear_cart'
+
 	resources :order_items, only: [:create, :update, :destroy]
 
 	root to: "books#best_sellers"

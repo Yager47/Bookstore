@@ -34,11 +34,22 @@
 	        	<p><%= order_item.book.description %></p>
 	        </td>
 	        <td><strong>$<%= order_item.book.price %></strong></td>
-	        <td>-</td>
-	        <td>$<%= order_item.book.price %></td>
+	        <td><%= order_item.quantity %></td>
+	        <td>$<%= order_item.price %></td>
 	      </tr>
-	     <% end %>
+      <% end %>
+
+      <tr>
+        <td></td>
+        <td><strong>SUBTOTAL</strong></td>
+        <td></td>
+        <td>$<%= current_order.total_price %></td>
+      </tr>
     </tbody>
 
   </table>
+
+  <%= link_to 'CONTINUE SHOPPING', books_path %> |
+  <%= link_to 'CLEAR', clear_cart_path %> | 
+  <%= link_to 'CHECKOUT', '#' %>
 <% end %>

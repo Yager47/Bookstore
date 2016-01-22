@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
 
   def current_order
-  	order = Order.last
-  	(order && order.in_progress?) ? order : Order.new
+    current_user.orders.find_by(aasm_state: "in_progress") || current_user.orders.new
+  	# order = Order.last
+  	# (order && order.in_progress?) ? order : Order.new
   end
 end

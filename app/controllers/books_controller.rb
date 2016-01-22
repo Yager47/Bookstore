@@ -6,7 +6,6 @@ class BooksController < ApplicationController
   def index
     @books = Book.all.page(params[:page]).per(6)
     @categories = Category.all
-    # @order_item = current_order.order_items.new
   end
 
   def new
@@ -19,6 +18,8 @@ class BooksController < ApplicationController
 
   def show
     @ratings = @book.ratings
+    @order_item = current_order.order_items.new
+    session[:order_item_book] = @book.id
   end
 
   def edit

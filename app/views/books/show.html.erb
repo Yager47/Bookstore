@@ -7,7 +7,23 @@
 	<div class="col-md-3"><%= image_tag(@book.image_url, size: "250x250") %></div>
 
 	<div class="col-md-5">
-		<h4>$<%= @book.price %></h4>
+		<p>
+			<strong>$<%= @book.price %></strong>
+
+			<% if user_signed_in? %>
+				<%= form_for(@order_item) do |f| %>
+					<span class="field">
+				    <%= f.hidden_field :book_id, value: @book.id %>
+				  </span>
+				  <span class="field">
+				    <%= f.text_field :quantity, size: 1, value: 1 %>
+				  </span>
+				  <span class="actions">
+				    <%= f.submit %>
+				  </span>
+				<% end %>	
+			<% end %>
+		</p>
 		<p><%= @book.description %></p>
 	</div>
 </div>
@@ -17,6 +33,7 @@
 	<% if user_signed_in? %>
 		<small><%= link_to 'Add review fo this book', new_book_rating_path(@book) %></small>
 	<% end %></h2>
+
 	<div class="col-md-6">
 		<% @ratings.each do |rating| %>
 				<div class="panel panel-default">
