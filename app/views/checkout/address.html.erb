@@ -1,0 +1,73 @@
+
+<div class="row">
+  <h1>
+    <div class="col-md-4">Checkout</div>
+    <div class="col-md-8">
+      <small><strong>ADDRESS</strong> | DELIVERY | PAYMENT | CONFIRM | COMPLETE</small>  
+    </div>
+  </h1>
+</div>
+
+<div class="row">
+    <h3>BILLING ADDRESS</h3>
+    <%= form_for(@order) do |order_form| %>
+      <div class="col-md-4">
+        <%= order_form.fields_for :billing_address do |billing_address_fields| %>
+          <div class="field">
+            <%= billing_address_fields.label :street %><br>
+            <%= billing_address_fields.text_field :street %>
+          </div>
+
+          <div class="field">
+            <%= billing_address_fields.label :city %><br>
+            <%= billing_address_fields.text_field :city %>
+          </div>
+
+          <div class="field">
+            <%= billing_address_fields.label :zipcode %><br>
+            <%= billing_address_fields.text_field :zipcode %>
+          </div>
+
+          <div class="field">
+            <%= billing_address_fields.label :phone %><br>
+            <%= billing_address_fields.text_field :phone %>
+          </div>
+        <% end %>
+
+        <input type="hidden" name="current_path" value="<%= request.fullpath %>"> 
+
+        <div class="actions">
+          <%= order_form.submit 'Save & Continue' %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <%= order_form.fields_for :shipping_address do |shipping_address_fields| %>
+          <div class="field">
+            <%= shipping_address_fields.label :street %><br>
+            <%= shipping_address_fields.text_field :street %>
+          </div>
+
+          <div class="field">
+            <%= shipping_address_fields.label :city %><br>
+            <%= shipping_address_fields.text_field :city %>
+          </div>
+
+          <div class="field">
+            <%= shipping_address_fields.label :zipcode %><br>
+            <%= shipping_address_fields.text_field :zipcode %>
+          </div>
+
+          <div class="field">
+            <%= shipping_address_fields.label :phone %><br>
+            <%= shipping_address_fields.text_field :phone %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+  <div class="col-md-4">
+    <h3>ORDER SUMMARY</h3>
+    <p>ORDER TOTAL: $<%= @order.total_price %></p>
+  </div>
+</div>

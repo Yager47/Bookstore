@@ -1,13 +1,12 @@
 class RatingsController < ApplicationController
+  before_action :set_book
   before_action :authenticate_user!
 
   def new
-  	get_book
   	@rating = @book.ratings.new
   end
 
   def create
-  	get_book
   	@rating = @book.ratings.create(rating_params)
   	@rating.user = current_user
 
@@ -19,7 +18,7 @@ class RatingsController < ApplicationController
   end
 
   private
-  	def get_book
+  	def set_book
   		@book = Book.find(params[:book_id])
   	end
 

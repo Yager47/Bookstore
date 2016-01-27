@@ -1,6 +1,6 @@
 class Rating < ActiveRecord::Base
-	belongs_to :user
-	belongs_to :book
+	belongs_to :book, dependent: :destroy
+  belongs_to :user
 
 	# ratyrate_rateable 'value'
 
