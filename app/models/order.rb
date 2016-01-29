@@ -2,9 +2,10 @@ class Order < ActiveRecord::Base
 	include AASM
 
 	belongs_to :user
-	has_many :order_items
-	has_one :billing_address, class_name: 'Address'#, foreign_key: 'billing_address_id'
-	has_one :shipping_address, class_name: 'Address'#, foreign_key: 'shipping_address_id'
+	belongs_to :credit_card
+	has_many :order_items, dependent: :destroy
+	has_one :billing_address, class_name: 'Address', dependent: :destroy
+	has_one :shipping_address, class_name: 'Address', dependent: :destroy
 
 	accepts_nested_attributes_for :billing_address, :shipping_address
 
@@ -26,6 +27,6 @@ class Order < ActiveRecord::Base
 	end
 
 	def total_price
-		self.order_items.inject(0) { |acc, item| acc += item.price }
+		self.delivery + self.order_items.inject(0) { |acc, item| acc += item.price }
 	end
 end

@@ -2,7 +2,30 @@
   <h1>
     <div class="col-md-4">Checkout</div>
     <div class="col-md-8">
-      <small>ADDRESS | <strong>DELIVERY</strong> | PAYMENT | CONFIRM | COMPLETE</small>  
+      <small>
+        <%= link_to 'ADDRESS', checkout_address_path %> | <strong>DELIVERY</strong> | PAYMENT | CONFIRM | COMPLETE
+      </small>
     </div>
   </h1>
+</div>
+
+<div class="row">
+  <h3>DELIVERY WAY</h3>
+  <div class="col-md-8">
+    <%= form_for(@order) do |f| %>
+      <div class="field">
+        <%= f.radio_button :delivery, 5.0 %> UPS Ground + $5.00 <br>
+        <%= f.radio_button :delivery, 10.0 %> UPS Two Days + $10.00 <br>
+        <%= f.radio_button :delivery, 15.0 %> UPS One Day + $15.00 <br>
+      </div>
+
+      <br>
+      <div class="actions">
+        <%= f.submit 'Save & Continue' %>
+      </div>
+      
+      <%= hidden_field_tag(:current_path, request.fullpath) %>
+    <% end %>
+  </div>
+
 </div>

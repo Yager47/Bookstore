@@ -4,7 +4,5 @@ class ApplicationController < ActionController::Base
 
   def current_order
     current_user.orders.find_by(aasm_state: "in_progress") || current_user.orders.new
-  	# order = Order.last
-  	# (order && order.in_progress?) ? order : Order.new
   end
 end

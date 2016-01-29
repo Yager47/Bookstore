@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126130453) do
+ActiveRecord::Schema.define(version: 20160129153722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20160126130453) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "order_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "country"
   end
 
   add_index "addresses", ["order_id"], name: "index_addresses_on_order_id", using: :btree
@@ -63,6 +66,14 @@ ActiveRecord::Schema.define(version: 20160126130453) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.string   "number"
+    t.string   "cvv"
+    t.date     "expiration_date"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer  "quantity"
     t.integer  "book_id"
@@ -77,12 +88,11 @@ ActiveRecord::Schema.define(version: 20160126130453) do
   create_table "orders", force: :cascade do |t|
     t.decimal  "total_price"
     t.datetime "completed_date"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "user_id"
     t.string   "aasm_state"
-    t.integer  "billing_address_id"
-    t.integer  "shipping_address_id"
+    t.decimal  "delivery",       default: 0.0
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
