@@ -1,6 +1,6 @@
 class CheckoutController < ApplicationController
   before_action :set_order
-  before_action :sequence_check, except: [:address]
+  # before_action :sequence_check, except: [:address]
   after_action :remember_action, except: [:complete]
 
   def address

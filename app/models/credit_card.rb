@@ -1,6 +1,6 @@
 class CreditCard < ActiveRecord::Base
   belongs_to :user
-  has_many :orders
+  belongs_to :order
 
   validates :number, presence: true
   validates :cvv, presence: true

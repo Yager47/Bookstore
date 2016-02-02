@@ -13,9 +13,12 @@ Rails.application.routes.draw do
 
   get 'checkout/address'
   get 'checkout/delivery'
-  get 'checkout/payment'
+  get 'checkout/payment', to: 'credit_cards#new'
   get 'checkout/confirm'
   get 'checkout/complete'
+  # get 'credit_cards/new'
+  
+  resources :credit_cards, only: [:new, :create, :update, :destroy]
 
   devise_for :users
 

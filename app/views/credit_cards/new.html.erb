@@ -15,26 +15,26 @@
 <div class="row">
   <div class="col-md-8">
     <h3>CREDIT CARD</h3>
-    <%= form_for(@order) do |order_form| %>
-      <%= order_form.fields_for :credit_card do |credit_card_fields| %>
+    <%= form_for(@credit_card) do |f| %>
         <div class="field">
-          <%= credit_card_fields.text_field :number, placeholder: 'Card Number' %>
+          <%= f.text_field :number, placeholder: 'Card Number' %>
         </div>
         <br>
         Expiration date:
         <div class="field">
-          <%= credit_card_fields.date_select :expiration_date, discard_day: true, order: [:month, :year] %>
+          <%= f.date_select :expiration_date, discard_day: true, order: [:month, :year] %>
         </div> 
         <br>
         <div class="field">
-          <%= credit_card_fields.text_field :cvv, placeholder: 'Card Code (CVV)' %>
+          <%= f.text_field :cvv, placeholder: 'Card Code (CVV)' %>
         </div> 
-      <% end %>
 
       <br>
       <div class="actions">
-        <%= order_form.submit 'Save & Continue' %>
+        <%= f.submit 'Save & Continue' %>
       </div>
+
+      <%= hidden_field_tag(:current_path, request.fullpath) %>
     <% end %>
   </div>
 

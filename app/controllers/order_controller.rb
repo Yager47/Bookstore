@@ -25,6 +25,7 @@ class OrderController < ApplicationController
       when checkout_address_path  then checkout_delivery_url
       when checkout_delivery_path then checkout_payment_url 
       when checkout_payment_path  then checkout_confirm_url
+      when checkout_confirm_path  then checkout_complete_url
       else root_url
       end
     end
@@ -34,7 +35,7 @@ class OrderController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:total_price, :user_id, :delivery, 
+      params.require(:order).permit(:total_price, :user_id, :credit_card_id, :delivery, 
         billing_address_attributes: [:first_name, :last_name, :city, :street, :country, :zipcode, :phone], 
         shipping_address_attributes: [:first_name, :last_name, :city, :street, :country, :zipcode, :phone])
     end

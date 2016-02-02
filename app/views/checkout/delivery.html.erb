@@ -10,8 +10,8 @@
 </div>
 
 <div class="row">
-  <h3>DELIVERY WAY</h3>
   <div class="col-md-8">
+    <h3>DELIVERY WAY</h3>
     <%= form_for(@order) do |f| %>
       <div class="field">
         <%= f.radio_button :delivery, 5.0 %> UPS Ground + $5.00 <br>
@@ -26,6 +26,11 @@
       
       <%= hidden_field_tag(:current_path, request.fullpath) %>
     <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <h3>ORDER SUMMARY</h3>
+    <p>ORDER TOTAL: $<%= @order.total_price %></p>
   </div>
 
 </div>
