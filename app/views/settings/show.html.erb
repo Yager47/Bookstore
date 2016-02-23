@@ -1,0 +1,123 @@
+<h1>Settings</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <br><strong>BILLING ADDRESS</strong><hr>
+
+    <%= form_for(@user) do |user_form| %>
+      <%= user_form.fields_for :billing_address do |billing_address_fields| %>
+        <div class="field">
+          <%= billing_address_fields.text_field :first_name, value: @user.billing_address.first_name, placeholder: 'First name' %>
+        </div><br>
+
+        <div class="field">
+          <%= billing_address_fields.text_field :last_name, value: @user.billing_address.last_name, placeholder: 'Last name' %>
+        </div><br>
+
+        <div class="field">
+          <%= billing_address_fields.text_field :street, value: @user.billing_address.street, placeholder: 'Street address' %>
+        </div><br>
+
+        <div class="field">
+          <%= billing_address_fields.text_field :city, value: @user.billing_address.city, placeholder: 'City' %>
+        </div><br>
+
+        <div class="field">
+          <%= billing_address_fields.select(:country, options_for_select(@countries, 1)) %>
+        </div><br>
+
+        <div class="field">
+          <%= billing_address_fields.text_field :zipcode, value: @user.billing_address.zipcode, placeholder: 'Zip', size: 9 %>
+        </div><br>
+
+        <div class="field">
+          <%= billing_address_fields.text_field :phone, value: @user.billing_address.phone, placeholder: 'Phone' %>
+        </div><br>      
+      <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <br><strong>SHIPPING ADDRESS</strong><hr>
+
+      <%= user_form.fields_for :shipping_address do |shipping_address_fields| %>
+        <div class="field">
+          <%= shipping_address_fields.text_field :first_name, value: @user.shipping_address.first_name, placeholder: 'First name' %>
+        </div><br>
+
+        <div class="field">
+          <%= shipping_address_fields.text_field :last_name, value: @user.shipping_address.last_name, placeholder: 'Last name' %>
+        </div><br>
+
+        <div class="field">
+          <%= shipping_address_fields.text_field :street, value: @user.shipping_address.street, placeholder: 'Street address' %>
+        </div><br>
+
+        <div class="field">
+          <%= shipping_address_fields.text_field :city, value: @user.shipping_address.city, placeholder: 'City' %>
+        </div><br>
+
+        <div class="field">
+          <%= shipping_address_fields.select(:country, options_for_select(@countries, 1)) %>
+        </div><br>
+
+        <div class="field">
+          <%= shipping_address_fields.text_field :zipcode, value: @user.shipping_address.zipcode, placeholder: 'Zip', size: 9 %>
+        </div><br>
+
+        <div class="field">
+          <%= shipping_address_fields.text_field :phone, value: @user.shipping_address.phone, placeholder: 'Phone' %>
+        </div><br>      
+      <% end %>
+
+      <div class="actions">
+        <%= user_form.submit 'SAVE' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <br><strong>EMAIL</strong><hr>
+
+    <%= form_for(@user, url: edit_registration_path(@user)) do |f| %>
+      <div class="field">
+        <%= f.email_field :email, placeholder: 'e-mail' %>
+      </div><br>
+
+      <div class="field">
+        <%= f.submit 'SAVE' %>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="col-md-6">
+    <br><strong>PASSWORD</strong><hr>
+
+    <%= form_for(@user, url: edit_registration_path(@user)) do |f| %>
+      <div class="field">
+        <%= f.label :password %> <i>(enter new password to change it)</i><br>
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div><br>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div><br>
+
+      <div class="field">
+        <%= f.label :current_password %> <i>(enter current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "off" %>
+      </div><br>
+
+      <div class="field">
+        <%= f.submit 'SAVE' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <br><strong>REMOVE ACCOUNT</strong><hr>
+  <%= button_to "REMOVE MY ACCOUNT", cancel_user_registration_path, data: { confirm: "Are you sure? All your data will be lost" }, method: :delete %><br>
+</div>

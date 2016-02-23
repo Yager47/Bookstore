@@ -3,17 +3,22 @@
 <h1>Shop</h1>
 
 <div class="row">
-  <div class="col-md-10">
+
+  <div class="col-md-9">
     <% @books.each do |book| %>
-      <p><%= image_tag(book.image_url, size: "150x150") %></p>
-      <p><%= link_to book.title, book %></p>
-      <p>$<%= book.price %></p>
+      <div class="col-md-4">
+        <p align="center"><%= image_tag(book.image_url, size: "150x150") %></p>
+        <p align="center">
+          <%= link_to book.title, book %><br>
+          $<%= book.price %>
+        </p>
+      </div>
     <% end %>
 
-    <%= paginate @books %>
+    <div class="row"><div class="col-md-12"><%= paginate @books %></div></div>
   </div>
 
-  <div class="col-md-2">
+  <div class="col-md-3">
     <h5>CATEGORIES</h5>
     <div class="list-group">
       <% @categories.each do |category| %>

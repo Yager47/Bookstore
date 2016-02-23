@@ -1,5 +1,12 @@
-class OrderController < ApplicationController
+class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_order, only: [:update, :destroy]
+
+  def index
+    @in_progress_order = current_order
+    @completed_orders = current_user.orders.where(aasm_state: 'completed')
+    @shipped_orders = current_user.orders.where(aasm_state: 'shipped')
+  end
 
   def new
     @order = Order.new
@@ -7,6 +14,10 @@ class OrderController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+  end
+
+  def show
+    @order = Order.find(params[:id])
   end
 
   def update

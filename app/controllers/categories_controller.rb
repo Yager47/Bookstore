@@ -2,7 +2,8 @@ class CategoriesController < ApplicationController
   before_action :set_category
 
   def show
-  	@categories = Category.all.page(params[:page]).per(6)
+    @categories = Category.all
+  	@books = @category.books.page(params[:page]).per(6)
   end
 
   private

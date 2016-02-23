@@ -19,7 +19,7 @@
 				    <%= f.text_field :quantity, size: 1, value: 1 %>
 				  </span>
 				  <span class="actions">
-				    <%= f.submit %>
+				    <%= f.submit 'Add to Cart' %>
 				  </span>
 				<% end %>	
 			<% end %>
@@ -37,7 +37,10 @@
 	<div class="col-md-6">
 		<% @ratings.each do |rating| %>
 				<div class="panel panel-default">
-    			<div class="panel-heading"><%= rating.user.name %></div>
+    			<div class="panel-heading">
+    				<%= rating.user.name %>
+    				<small align="right"><%= rating.created_at %></small>
+    			</div>
     			<div class="panel-body"><strong>Rating</strong>: <%= rating.value %></div>
 					<div class="panel-body"><%= rating.review %></div>
   			</div>

@@ -1,5 +1,6 @@
 class Address < ActiveRecord::Base
   belongs_to :order
+  belongs_to :user
 
   validates :first_name, presence: true
   validates :last_name, presence: true

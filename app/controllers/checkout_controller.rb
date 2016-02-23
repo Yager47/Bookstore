@@ -1,13 +1,17 @@
+require 'date'
+
 class CheckoutController < ApplicationController
   before_action :set_order
   # before_action :sequence_check, except: [:address]
-  after_action :remember_action, except: [:complete]
 
   def address
     if @order.order_items.empty?
       redirect_to cart_url, alert: 'Cart can not be empty. Add items to your cart before continue.'
+    else
+      @order.build_billing_address unless @order.billing_address
+      @order.build_shipping_address unless @order.shipping_address
+      @countries = Country.all.map { |country| Array.new(2, country.name) }.sort
     end
-    @countries = Country.all.map { |country| [country.name, country.name] }.sort
   end
 
   def delivery
@@ -20,6 +24,10 @@ class CheckoutController < ApplicationController
   end
 
   def complete
+    @order.complete
+    @order.completed_date = DateTime.now
+    @order.save
+    redirect_to @order
   end
       
   private
@@ -37,10 +45,6 @@ class CheckoutController < ApplicationController
       else params[:action]
       end       
     end
-
-    def remember_action
-      session[:previous_action] = params[:action]
-    end 
 
     def set_order
       if current_order.order_items.empty?
