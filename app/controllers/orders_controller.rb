@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order, only: [:update, :destroy]
 
   def index
     @in_progress_order = current_order
@@ -21,12 +20,12 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order.update(order_params)
+    current_order.update(order_params)
     redirect_to next_checkout_url
   end
 
   def destroy
-    @order.destroy
+    current_order.destroy
     redirect_to root_url
   end
 
@@ -39,10 +38,6 @@ class OrdersController < ApplicationController
       when checkout_confirm_path  then checkout_complete_url
       else root_url
       end
-    end
-
-    def set_order
-      @order = current_order
     end
 
     def order_params

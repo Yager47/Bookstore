@@ -31,7 +31,7 @@ class CheckoutController < ApplicationController
   end
       
   private
-    def sequence_check
+    def sequence_check # !
       unless session[:previous_action] == previous_action || session[:previous_action] == params[:action]
         redirect_to checkout_address_path, alert: 'You must complete all previous checkout steps before continue.'
       end 

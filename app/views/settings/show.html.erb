@@ -7,19 +7,19 @@
     <%= form_for(@user) do |user_form| %>
       <%= user_form.fields_for :billing_address do |billing_address_fields| %>
         <div class="field">
-          <%= billing_address_fields.text_field :first_name, value: @user.billing_address.first_name, placeholder: 'First name' %>
+          <%= billing_address_fields.text_field :first_name, placeholder: 'First name' %>
         </div><br>
 
         <div class="field">
-          <%= billing_address_fields.text_field :last_name, value: @user.billing_address.last_name, placeholder: 'Last name' %>
+          <%= billing_address_fields.text_field :last_name, placeholder: 'Last name' %>
         </div><br>
 
         <div class="field">
-          <%= billing_address_fields.text_field :street, value: @user.billing_address.street, placeholder: 'Street address' %>
+          <%= billing_address_fields.text_field :street, placeholder: 'Street address' %>
         </div><br>
 
         <div class="field">
-          <%= billing_address_fields.text_field :city, value: @user.billing_address.city, placeholder: 'City' %>
+          <%= billing_address_fields.text_field :city, placeholder: 'City' %>
         </div><br>
 
         <div class="field">
@@ -27,33 +27,32 @@
         </div><br>
 
         <div class="field">
-          <%= billing_address_fields.text_field :zipcode, value: @user.billing_address.zipcode, placeholder: 'Zip', size: 9 %>
+          <%= billing_address_fields.text_field :zipcode, placeholder: 'Zip', size: 9 %>
         </div><br>
 
         <div class="field">
-          <%= billing_address_fields.text_field :phone, value: @user.billing_address.phone, placeholder: 'Phone' %>
+          <%= billing_address_fields.text_field :phone, placeholder: 'Phone' %>
         </div><br>      
       <% end %>
   </div>
 
   <div class="col-md-6">
     <br><strong>SHIPPING ADDRESS</strong><hr>
-
       <%= user_form.fields_for :shipping_address do |shipping_address_fields| %>
         <div class="field">
-          <%= shipping_address_fields.text_field :first_name, value: @user.shipping_address.first_name, placeholder: 'First name' %>
+          <%= shipping_address_fields.text_field :first_name, placeholder: 'First name' %>
         </div><br>
 
         <div class="field">
-          <%= shipping_address_fields.text_field :last_name, value: @user.shipping_address.last_name, placeholder: 'Last name' %>
+          <%= shipping_address_fields.text_field :last_name, placeholder: 'Last name' %>
         </div><br>
 
         <div class="field">
-          <%= shipping_address_fields.text_field :street, value: @user.shipping_address.street, placeholder: 'Street address' %>
+          <%= shipping_address_fields.text_field :street, placeholder: 'Street address' %>
         </div><br>
 
         <div class="field">
-          <%= shipping_address_fields.text_field :city, value: @user.shipping_address.city, placeholder: 'City' %>
+          <%= shipping_address_fields.text_field :city, placeholder: 'City' %>
         </div><br>
 
         <div class="field">
@@ -61,11 +60,11 @@
         </div><br>
 
         <div class="field">
-          <%= shipping_address_fields.text_field :zipcode, value: @user.shipping_address.zipcode, placeholder: 'Zip', size: 9 %>
+          <%= shipping_address_fields.text_field :zipcode, placeholder: 'Zip', size: 9 %>
         </div><br>
 
         <div class="field">
-          <%= shipping_address_fields.text_field :phone, value: @user.shipping_address.phone, placeholder: 'Phone' %>
+          <%= shipping_address_fields.text_field :phone, placeholder: 'Phone' %>
         </div><br>      
       <% end %>
 

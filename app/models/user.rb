@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :ratings
-  has_many :orders
+  has_many :orders, dependent: :destroy
   has_many :credit_cards
   has_one :billing_address, class_name: 'Address', dependent: :destroy
   has_one :shipping_address, class_name: 'Address', dependent: :destroy
@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true, length: { in: 1..80 }
 
   def admin?
-  	admin
+  	admin ? true : false
   end
 
   def name
