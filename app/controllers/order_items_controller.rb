@@ -4,7 +4,6 @@ class OrderItemsController < ApplicationController
 
   def create
     if @order_item = @order.order_items.find_by(book_id: session[:order_item_book])
-      # @order_item.quantity += params[:quantity].to_i
       @order_item.update(order_item_params)
     else
       @order_item = @order.order_items.new(order_item_params)
@@ -27,14 +26,14 @@ class OrderItemsController < ApplicationController
 
   private
     def set_order
-  		@order = current_order
+      @order = current_order
     end
 
-  	def set_order_item
-  		@order_item = @order.order_items.find(params[:id])
-  	end
+    def set_order_item
+      @order_item = @order.order_items.find(params[:id])
+    end
 
-  	def order_item_params
-  		params.require(:order_item).permit(:quantity)
-  	end
+    def order_item_params
+      params.require(:order_item).permit(:quantity)
+    end
 end

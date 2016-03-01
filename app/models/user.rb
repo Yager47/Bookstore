@@ -13,10 +13,10 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true, length: { in: 1..80 }
 
   def admin?
-  	admin ? true : false
+    admin ? true : false
   end
 
   def name
-  	"#{self.first_name} #{self.last_name}"
+    "#{self.first_name} #{self.last_name}"
   end
 end

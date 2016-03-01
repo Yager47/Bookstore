@@ -3,11 +3,11 @@ class CategoriesController < ApplicationController
 
   def show
     @categories = Category.all
-  	@books = @category.books.page(params[:page]).per(6)
+    @books = @category.books.page(params[:page]).per(6)
   end
 
   private
-  	def set_category
-  		@category = Category.find(params[:id])
-  	end
+    def set_category
+      @category = Category.find(params[:id])
+    end
 end

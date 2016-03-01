@@ -13,3 +13,4 @@ class SettingsController < ApplicationController
       @user = current_user
     end
 end
+  
