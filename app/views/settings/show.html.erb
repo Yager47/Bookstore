@@ -34,10 +34,16 @@
           <%= billing_address_fields.text_field :phone, placeholder: 'Phone' %>
         </div><br>      
       <% end %>
+       <div class="actions">
+        <%= user_form.submit 'SAVE' %>
+      </div>
+      <% end %>
   </div>
 
   <div class="col-md-6">
     <br><strong>SHIPPING ADDRESS</strong><hr>
+        <%= form_for(@user) do |user_form| %>
+
       <%= user_form.fields_for :shipping_address do |shipping_address_fields| %>
         <div class="field">
           <%= shipping_address_fields.text_field :first_name, placeholder: 'First name' %>

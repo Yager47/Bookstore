@@ -1,10 +1,9 @@
 class Author < ActiveRecord::Base
   has_many :books
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :first_name, :last_name, presence: true, length: { in: 1..30 }
 
   def name
-    "#{self.first_name} #{self.last_name}"
+    [first_name, last_name].join(' ')
   end
 end

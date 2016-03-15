@@ -1,4 +1,4 @@
-<h1>Categories - <%= @category.title %></h1>
+<h1><%= t('categories.title') %> - <%= @category.title %></h1>
 
 <div class="row">
 
@@ -17,7 +17,7 @@
   </div>
 
   <div class="col-md-3">
-    <h5>CATEGORIES</h5>
+    <h5><%= t('categories.title') %></h5>
     <div class="list-group">
       <% @categories.each do |category| %>
         <a href="<%= "/categories/#{category.id}" %>" class="list-group-item">

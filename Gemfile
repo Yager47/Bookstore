@@ -27,13 +27,13 @@ gem 'devise'
 
 gem 'rails_admin'
 
-gem 'i18n'
+gem 'rails-i18n'
 
 gem 'omniauth'
 
 gem 'omniauth-facebook'
 
-gem 'cancan'
+gem 'cancancan'
 
 gem 'kaminari'
 
@@ -49,9 +49,12 @@ gem 'sprockets-rails'
 
 gem 'ratyrate'
 
+gem 'wicked'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'faker'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -64,6 +67,6 @@ group :development, :test do
 end
 
 group :test do 
-  gem 'faker'
+  gem 'shoulda-matchers'
   gem 'database_cleaner'
 end

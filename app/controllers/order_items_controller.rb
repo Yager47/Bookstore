@@ -1,6 +1,8 @@
 class OrderItemsController < ApplicationController
   before_action :set_order
-  before_action :set_order_item, only: [:update, :destroy]
+  before_action :set_order_items, only: [:update, :destroy]
+  
+  load_and_authorize_resource
 
   def create
     if @order_item = @order.order_items.find_by(book_id: session[:order_item_book])
@@ -29,7 +31,7 @@ class OrderItemsController < ApplicationController
       @order = current_order
     end
 
-    def set_order_item
+    def set_order_items
       @order_item = @order.order_items.find(params[:id])
     end
 

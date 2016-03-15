@@ -1,18 +1,18 @@
-<h1>Orders</h1>
+<h1><%= t('.title') %></h1>
 
 <% if @in_progress_order %>
   <div class="row">
     <br>
-    <strong>IN PROGRESS</strong><hr>
+    <strong><%= t('.in_progress') %></strong><hr>
 
     <table class="table table-hover">
     
       <thead>
         <tr>
-          <th>BOOK</th>
-          <th>PRICE</th>
-          <th>QTY</th>
-          <th>TOTAL</th>
+          <th><%= t('table.book') %></th>
+          <th><%= t('table.price') %></th>
+          <th><%= t('table.qty') %></th>
+          <th><%= t('table.total') %></th>
         </tr>
       </thead>
 
@@ -31,7 +31,7 @@
 
         <tr>
           <td></td>
-          <td><strong>SUBTOTAL</strong></td>
+          <td><strong><%= t('table.sub_total') %></strong></td>
           <td></td>
           <td>$<%= @in_progress_order.total_price %></td>
         </tr>
@@ -39,21 +39,21 @@
 
     </table>
   </div>
-  <div class="row"><%= link_to 'GO TO CART', cart_path %></div>
+  <div class="row"><%= link_to t('.go_to_cart'), cart_path %></div>
 <% end %>
 
 <% if @completed_orders %>
   <div class="row">
     <br>
-    <strong>IN DELIVERY</strong><hr>
+    <strong><%= t('.in_delivery') %></strong><hr>
     
     <table class="table table-hover">
     
       <thead>
         <tr>
-          <th>NUMBER</th>
-          <th>COMPLETED AT</th>
-          <th>TOTAL</th>
+          <th><%= t('table.number') %></th>
+          <th><%= t('table.completed_at') %></th>
+          <th><%= t('table.total') %></th>
         </tr>
       </thead>
 
@@ -74,15 +74,15 @@
 <% if @shipped_orders %>
   <div class="row">
     <br>
-    <strong>DELIVERED</strong><hr>
+    <strong><%= t('.delivered') %></strong><hr>
     
     <table class="table table-hover">
     
       <thead>
         <tr>
-          <th>NUMBER</th>
-          <th>COMPLETED AT</th>
-          <th>TOTAL</th>
+          <th><%= t('table.number') %></th>
+          <th><%= t('table.completed_at') %></th>
+          <th><%= t('table.total') %></th>        
         </tr>
       </thead>
 

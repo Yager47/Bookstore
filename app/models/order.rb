@@ -2,12 +2,16 @@ class Order < ActiveRecord::Base
   include AASM
 
   belongs_to :user
+
   has_many :order_items, dependent: :destroy
-  has_one :billing_address, class_name: 'Address', dependent: :destroy
-  has_one :shipping_address, class_name: 'Address', dependent: :destroy
+  
+  has_one :billing_address, dependent: :destroy # class_name: 'Address', dependent: :destroy
+  has_one :shipping_address, dependent: :destroy # class_name: 'Address', dependent: :destroy
   has_one :credit_card, dependent: :destroy
 
-  accepts_nested_attributes_for :billing_address, :shipping_address, :credit_card
+  accepts_nested_attributes_for :billing_address 
+  accepts_nested_attributes_for :shipping_address
+  accepts_nested_attributes_for :credit_card
 
   # validates :total_price, presence: true
   # validates :completed_date, presence: true

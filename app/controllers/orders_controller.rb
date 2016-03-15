@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  load_and_authorize_resource
 
   def index
     @in_progress_order = current_order
@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
 
   def update
     current_order.update(order_params)
-    redirect_to next_checkout_url
+    redirect_to current_order 
   end
 
   def destroy

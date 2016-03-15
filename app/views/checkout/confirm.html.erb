@@ -3,9 +3,9 @@
     <div class="col-md-4">Checkout</div>
     <div class="col-md-8">
       <small>
-        <%= link_to 'ADDRESS', checkout_address_path %> | 
-        <%= link_to 'DELIVERY', checkout_delivery_path %> | 
-        <%= link_to 'PAYMENT', checkout_payment_path %> | 
+        <%= link_to 'ADDRESS', wizard_path(:address) %> | 
+        <%= link_to 'DELIVERY', wizard_path(:delivery) %> | 
+        <%= link_to 'PAYMENT', wizard_path(:payment) %> | 
         <strong>CONFIRM</strong> | 
         COMPLETE
       </small>
@@ -17,7 +17,7 @@
 
 <div class="row">
   <div class="col-md-3">
-    <h4>Billing Address <small><%= link_to '[edit]', checkout_address_path %></small></h4>
+    <h4>Billing Address <small><%= link_to '[edit]', wizard_path(:address) %></small></h4>
     <%= @order.billing_address.first_name %> 
     <%= @order.billing_address.last_name %> <br>
     <%= @order.billing_address.street %> <br>
@@ -27,7 +27,7 @@
   </div>
 
   <div class="col-md-3">
-    <h4>Shipping Address <small><%= link_to '[edit]', checkout_address_path %></small></h4>
+    <h4>Shipping Address <small><%= link_to '[edit]', wizard_path(:address) %></small></h4>
     <%= @order.shipping_address.first_name %> 
     <%= @order.shipping_address.last_name %> <br>
     <%= @order.shipping_address.street %> <br>
@@ -37,12 +37,12 @@
   </div>
 
   <div class="col-md-3">
-    <h4>Shipments <small><%= link_to '[edit]', checkout_delivery_path %></small></h4>
+    <h4>Shipments <small><%= link_to '[edit]', wizard_path(:delivery) %></small></h4>
     $<%= @order.delivery %>
   </div>
 
   <div class="col-md-3">
-    <h4>Payment Information <small><%= link_to '[edit]', checkout_payment_path %></small></h4>
+    <h4>Payment Information <small><%= link_to '[edit]', wizard_path(:payment) %></small></h4>
     <%= @order.credit_card.number %> <br>
     <%= @order.credit_card.expiration_date %>
   </div>
@@ -98,4 +98,4 @@
   </table>
 </div>
 
-<div class="row"><%= link_to 'PLACE ORDER', checkout_complete_path %></div>
+<div class="row"><%= link_to 'PLACE ORDER', wizard_path(:complete) %></div>

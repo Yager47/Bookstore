@@ -10,7 +10,7 @@
 		<p>
 			<strong>$<%= @book.price %></strong>
 
-			<% if user_signed_in? %>
+			<% if @book.in_stock? && user_signed_in? %>
 				<%= form_for(@order_item) do |f| %>
 					<span class="field">
 				    <%= f.hidden_field :book_id, value: @book.id %>
@@ -19,9 +19,11 @@
 				    <%= f.text_field :quantity, size: 1, value: 1 %>
 				  </span>
 				  <span class="actions">
-				    <%= f.submit 'Add to Cart' %>
+				    <%= f.submit t('.cart.add_to_cart') %>
 				  </span>
-				<% end %>	
+				<% end %>
+			<% else %>
+				<p><strong>This book is not in stock.</strong></p>	
 			<% end %>
 		</p>
 		<p><%= @book.description %></p>
@@ -29,9 +31,10 @@
 </div>
 
 <div class="row">
-	<h2>Reviews 
-	<% if user_signed_in? %>
-		<small><%= link_to 'Add review fo this book', new_book_rating_path(@book) %></small>
+	<h2><%= t('.ratings.title') %> 
+
+	<% if can? :create, Rating %>
+		<small><%= link_to t('.ratings.add_review'), new_book_rating_path(@book) %></small>
 	<% end %></h2>
 
 	<div class="col-md-6">
@@ -41,7 +44,7 @@
     				<%= rating.user.name %>
     				<small align="right"><%= rating.created_at %></small>
     			</div>
-    			<div class="panel-body"><strong>Rating</strong>: <%= rating.value %></div>
+    			<div class="panel-body"><strong><%= t('.ratings.rating') %></strong>: <%= rating.value %></div>
 					<div class="panel-body"><%= rating.review %></div>
   			</div>
 		<% end %>

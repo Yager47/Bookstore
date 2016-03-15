@@ -1,4 +1,4 @@
-<h1>Shopping cart</h1>
+<h1><%= t('.title') %></h1>
 
 <% if !@order_item.nil? && @order_item.errors.any? %>
   <div class="alert alert-danger">
@@ -12,17 +12,17 @@
 
 
 <% if @order_items.count == 0 %>
-	<p>There are no items in your shopping cart. 
-		Please <%= link_to "go back", books_path %> and add some items to your cart.</p>
+	<p><%= t('.no_items_msg') %></p>
+  <p><%= link_to t('.back_to_shop'), books_path %></p>
 <% else %>
 	<table class="table table-hover">
     
     <thead>
       <tr>
-        <th>BOOK</th>
-        <th>PRICE</th>
-        <th>QTY</th>
-        <th>TOTAL</th>
+        <th><%= t('table.book') %></th>
+        <th><%= t('table.price') %></th>
+        <th><%= t('table.qty') %></th>
+        <th><%= t('table.total') %></th>
       </tr>
     </thead>
 
@@ -41,7 +41,7 @@
 
       <tr>
         <td></td>
-        <td><strong>SUBTOTAL</strong></td>
+        <td><strong><%= t('table.sub_total') %></strong></td>
         <td></td>
         <td>$<%= current_order.total_price %></td>
       </tr>
@@ -49,7 +49,7 @@
 
   </table>
 
-  <%= link_to 'CONTINUE SHOPPING', books_path %> |
-  <%= link_to 'CLEAR', clear_cart_path %> | 
-  <%= link_to 'CHECKOUT', checkout_address_path %>
+  <%= link_to t('.continue'), books_path %> |
+  <%= link_to t('.clear'), clear_cart_path %> | 
+  <%= link_to t('.checkout'), checkout_path(:address) %>
 <% end %>

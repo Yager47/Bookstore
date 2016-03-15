@@ -11,12 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204174820) do
+ActiveRecord::Schema.define(version: 20160315102107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "country"
     t.string   "city"
     t.string   "street"
     t.string   "phone"
@@ -24,9 +27,6 @@ ActiveRecord::Schema.define(version: 20160204174820) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "order_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "country"
     t.integer  "user_id"
   end
 
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20160204174820) do
     t.integer  "author_id"
     t.integer  "category_id"
     t.string   "image_url",      default: "book_default.jpg"
+    t.integer  "sales"
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id", using: :btree
@@ -116,18 +117,6 @@ ActiveRecord::Schema.define(version: 20160204174820) do
   add_index "ratings", ["book_id"], name: "index_ratings_on_book_id", using: :btree
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
-  create_table "shipping_addresses", force: :cascade do |t|
-    t.string   "city"
-    t.string   "street"
-    t.string   "phone"
-    t.string   "zipcode"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "order_id"
-  end
-
-  add_index "shipping_addresses", ["order_id"], name: "index_shipping_addresses_on_order_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -160,5 +149,4 @@ ActiveRecord::Schema.define(version: 20160204174820) do
   add_foreign_key "orders", "users"
   add_foreign_key "ratings", "books"
   add_foreign_key "ratings", "users"
-  add_foreign_key "shipping_addresses", "orders"
 end

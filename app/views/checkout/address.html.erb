@@ -21,7 +21,7 @@
 </div>
 
 <div class="row">
-  <%= form_for(@order) do |order_form| %>
+  <%= form_for @order, url: wizard_path, method: :put do |order_form| %>
     <div class="col-md-4">
       <%= order_form.fields_for :billing_address do |billing_address_fields| %>
         <div class="field">
@@ -59,10 +59,9 @@
           <%= billing_address_fields.text_field :phone %>
         </div>
       <% end %>
-
-      <%= hidden_field_tag(:current_path, request.fullpath) %>
-
+      
       <br>
+      
       <div class="actions">
         <%= order_form.submit 'Save & Continue' %>
       </div>
