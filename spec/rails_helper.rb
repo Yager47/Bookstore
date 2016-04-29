@@ -5,7 +5,10 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'aasm/rspec'
+<<<<<<< HEAD
 require 'support/devise'
+=======
+>>>>>>> fde6d69f324d2e68376e4aa63ad278214ec3cdf2
 
 ActiveRecord::Migration.maintain_test_schema!
 
