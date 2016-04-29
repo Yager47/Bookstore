@@ -1,0 +1,110 @@
+en:
+  layouts:
+    application:
+      home: "Home"
+      languages:
+        lang: "Language"
+        en: "English"
+        ru: "Russian"
+      cart: "CART"
+      orders: "Orders"
+      settings: "Settings"
+      sign_up: "Sign Up"
+      sign_in: "Sign In"
+      sign_out: "Sign Out"
+  books:
+    best_sellers:
+      title: "Best Sellers"
+    index:
+      title: "Shop"
+    show:
+      ratings:
+        title: "Reviews"
+        add_review: "Add review for this book"
+        rating: "Rating"
+      cart:
+        add_to_cart: "Add to Cart"
+  categories:
+    title: "CATEGORIES"
+  table:
+    book: "BOOK"
+    price: "PRICE"
+    qty: "QTY"
+    number: "NUMBER"
+    completed_at: "COMPLETED AT"
+    total: "TOTAL"
+    sub_total: "SUBTOTAL"
+  carts:
+    show:
+      title: "Shopping Cart"
+      no_items_msg: "There are no items in your shopping cart. Please go back and add some items to your cart."
+      back_to_shop: "Back to Shop"
+      continue: "CONTINUE SHOPPING"
+      clear: "CLEAR"
+      checkout: "CHECKOUT"
+  orders:
+    index:
+      title: "Orders"
+      in_progress: "IN PROGRESS"
+      in_delivery: "IN DELIVERY"
+      delivered: "DELIVERED"
+      go_to_cart: "GO TO CART"
+  views:
+    pagination:
+      previous: "Prev"
+      next: "Next"
+      first: ""
+      last: ""
+      truncate: "..."
+
+  activerecord:
+    attributes:
+      user:
+        current_password: "Current password"
+        email: 
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        remember_me: "Remember me"
+    models:
+      user: "User"
+
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: "Resend confirmation instructions"
+    passwords:
+      edit:
+        change_my_password: "Change my password"
+        change_your_password: "Change your password"
+        confirm_new_password: "Confirm new password"
+        new_password: "New password"
+      new:
+        forgot_your_password: "Forgot your password?"
+        send_me_reset_password_instructions: "Send me reset password instructions"
+    registrations:
+      edit:
+        are_you_sure: "Are you sure?"
+        cancel_my_account: "Cancel my account"
+        currently_waiting_confirmation_for_email: "Currently waiting confirmation for E-mail: %{email}"
+        leave_blank_if_you_don_t_want_to_change_it: "Leave blank if you don't want to change it"
+        title: "Edit %{resource}"
+        unhappy: "Unhappy"
+        update: "Update"
+        we_need_your_current_password_to_confirm_your_changes: "We need your current password to confirm your changes"
+      new:
+        sign_up: "Sign Up"
+    sessions:
+      new:
+        sign_in: "Sign In"
+    shared:
+      links:
+        back: "Back"
+        didn_t_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
+        didn_t_receive_unlock_instructions: "Didn't receive unlock instructions?"
+        forgot_your_password: "Forgot your password?"
+        sign_in: "Sign In"
+        sign_in_with_provider: "Sign in with provider: %{provider}"
+        sign_up: "Sign Up"
+    unlocks:
+      new:
+        resend_unlock_instructions: "Resend unlock instructions"

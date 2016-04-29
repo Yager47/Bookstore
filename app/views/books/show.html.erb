@@ -1,0 +1,52 @@
+<div class="row">
+	<h2><%= @book.title %><br>
+	<small><%= @book.author.name %></small></h2><br>
+</div>
+
+<div class="row">
+	<div class="col-md-3"><%= image_tag(@book.image_url, size: "250x250") %></div>
+
+	<div class="col-md-5">
+		<p>
+			<strong>$<%= @book.price %></strong>
+
+			<% if @book.in_stock? && user_signed_in? %>
+				<%= form_for(@order_item) do |f| %>
+					<span class="field">
+				    <%= f.hidden_field :book_id, value: @book.id %>
+				  </span>
+				  <span class="field">
+				    <%= f.text_field :quantity, size: 1, value: 1 %>
+				  </span>
+				  <span class="actions">
+				    <%= f.submit t('.cart.add_to_cart') %>
+				  </span>
+				<% end %>
+			<% else %>
+				<p><strong>This book is not in stock.</strong></p>	
+			<% end %>
+		</p>
+		<p><%= @book.description %></p>
+	</div>
+</div>
+
+<div class="row">
+	<h2><%= t('.ratings.title') %> 
+
+	<% if can? :create, Rating %>
+		<small><%= link_to t('.ratings.add_review'), new_book_rating_path(@book) %></small>
+	<% end %></h2>
+
+	<div class="col-md-6">
+		<% @ratings.each do |rating| %>
+				<div class="panel panel-default">
+    			<div class="panel-heading">
+    				<%= rating.user.name %>
+    				<small align="right"><%= rating.created_at %></small>
+    			</div>
+    			<div class="panel-body"><strong><%= t('.ratings.rating') %></strong>: <%= rating.value %></div>
+					<div class="panel-body"><%= rating.review %></div>
+  			</div>
+		<% end %>
+	</div>
+</div>

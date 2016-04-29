@@ -1,0 +1,55 @@
+<h1><%= t('.title') %></h1>
+
+<% if !@order_item.nil? && @order_item.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+    	<% @order_item.errors.full_messages.each do |msg| %>
+      	<li><%= msg %></li>
+    	<% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<% if @order_items.count == 0 %>
+	<p><%= t('.no_items_msg') %></p>
+  <p><%= link_to t('.back_to_shop'), books_path %></p>
+<% else %>
+	<table class="table table-hover">
+    
+    <thead>
+      <tr>
+        <th><%= t('table.book') %></th>
+        <th><%= t('table.price') %></th>
+        <th><%= t('table.qty') %></th>
+        <th><%= t('table.total') %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+	    <% @order_items.each do |order_item| %>
+	      <tr>
+	        <td>
+	        	<h3><%= order_item.book.title %></h3>
+	        	<p><%= order_item.book.description %></p>
+	        </td>
+	        <td><strong>$<%= order_item.book.price %></strong></td>
+	        <td><%= order_item.quantity %></td>
+	        <td>$<%= order_item.price %></td>
+	      </tr>
+      <% end %>
+
+      <tr>
+        <td></td>
+        <td><strong><%= t('table.sub_total') %></strong></td>
+        <td></td>
+        <td>$<%= current_order.total_price %></td>
+      </tr>
+    </tbody>
+
+  </table>
+
+  <%= link_to t('.continue'), books_path %> |
+  <%= link_to t('.clear'), clear_cart_path %> | 
+  <%= link_to t('.checkout'), checkout_path(:address) %>
+<% end %>

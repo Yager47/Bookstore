@@ -1,0 +1,45 @@
+<div class="row">
+  <h1>
+    <div class="col-md-4">Checkout</div>
+    <div class="col-md-8">
+      <small>
+        <%= link_to 'ADDRESS', checkout_address_path %> | 
+        <%= link_to 'DELIVERY', checkout_delivery_path %> | 
+        <strong>PAYMENT</strong> | 
+        CONFIRM | COMPLETE
+      </small>
+    </div>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <h3>CREDIT CARD</h3>
+    <%= form_for(@credit_card) do |f| %>
+        <div class="field">
+          <%= f.text_field :number, placeholder: 'Card Number' %>
+        </div>
+        <br>
+        Expiration date:
+        <div class="field">
+          <%= f.date_select :expiration_date, discard_day: true, order: [:month, :year] %>
+        </div> 
+        <br>
+        <div class="field">
+          <%= f.text_field :cvv, placeholder: 'Card Code (CVV)' %>
+        </div> 
+
+      <br>
+      <div class="actions">
+        <%= f.submit 'Save & Continue' %>
+      </div>
+
+      <%= hidden_field_tag(:current_path, request.fullpath) %>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <h3>ORDER SUMMARY</h3>
+    <p>ORDER TOTAL: $<%= @order.total_price %></p>
+  </div>
+</div>

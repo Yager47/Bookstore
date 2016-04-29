@@ -1,0 +1,21 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.container {
+	margin-left: 50px;
+	margin-right: 10px;
+}
+
+.col-md-10, .col-md-12 {
+	text-align: center;
+	padding-top: 20px;
+}
+
+.book_image {
+	float: left;
+}
+
+.book_description {
+	padding-left: 320px;
+	padding-right: 200px;
+}

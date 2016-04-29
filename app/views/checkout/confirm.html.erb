@@ -1,0 +1,101 @@
+<div class="row">
+  <h1>
+    <div class="col-md-4">Checkout</div>
+    <div class="col-md-8">
+      <small>
+        <%= link_to 'ADDRESS', wizard_path(:address) %> | 
+        <%= link_to 'DELIVERY', wizard_path(:delivery) %> | 
+        <%= link_to 'PAYMENT', wizard_path(:payment) %> | 
+        <strong>CONFIRM</strong> | 
+        COMPLETE
+      </small>
+    </div>
+  </h1>
+</div>
+
+<div class="row"><h3>CONFIRM</h3></div>
+
+<div class="row">
+  <div class="col-md-3">
+    <h4>Billing Address <small><%= link_to '[edit]', wizard_path(:address) %></small></h4>
+    <%= @order.billing_address.first_name %> 
+    <%= @order.billing_address.last_name %> <br>
+    <%= @order.billing_address.street %> <br>
+    <%= @order.billing_address.city %> <br>
+    <%= @order.billing_address.country %> <br>
+    Phone <%= @order.billing_address.phone %> <br>
+  </div>
+
+  <div class="col-md-3">
+    <h4>Shipping Address <small><%= link_to '[edit]', wizard_path(:address) %></small></h4>
+    <%= @order.shipping_address.first_name %> 
+    <%= @order.shipping_address.last_name %> <br>
+    <%= @order.shipping_address.street %> <br>
+    <%= @order.shipping_address.city %> <br>
+    <%= @order.shipping_address.country %> <br>
+    Phone <%= @order.shipping_address.phone %> <br>
+  </div>
+
+  <div class="col-md-3">
+    <h4>Shipments <small><%= link_to '[edit]', wizard_path(:delivery) %></small></h4>
+    $<%= @order.delivery %>
+  </div>
+
+  <div class="col-md-3">
+    <h4>Payment Information <small><%= link_to '[edit]', wizard_path(:payment) %></small></h4>
+    <%= @order.credit_card.number %> <br>
+    <%= @order.credit_card.expiration_date %>
+  </div>
+</div>
+
+<br>
+<div class="row">
+  <table class="table table-hover">
+    
+    <thead>
+      <tr>
+        <th>BOOK</th>
+        <th>PRICE</th>
+        <th>QTY</th>
+        <th>TOTAL</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @order.order_items.each do |order_item| %>
+        <tr>
+          <td>
+            <h3><%= order_item.book.title %></h3>
+            <p><%= order_item.book.description %></p>
+          </td>
+          <td><strong>$<%= order_item.book.price %></strong></td>
+          <td><%= order_item.quantity %></td>
+          <td>$<%= order_item.price %></td>
+        </tr>
+      <% end %>
+
+      <tr>
+        <td></td>
+        <td>
+          <strong>SUBTOTAL</strong><br>
+          <strong>SHIPPING</strong>
+        </td>
+        <td></td>
+        <td>
+          $<%= current_order.sub_total %>
+          $<%= current_order.delivery %>
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td><strong>ORDER TOTAL</strong></td>
+        <td></td>
+        <td>$<%= current_order.total_price %></td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<div class="row"><%= link_to 'PLACE ORDER', wizard_path(:complete) %></div>

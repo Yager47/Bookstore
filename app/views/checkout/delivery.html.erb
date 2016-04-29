@@ -1,0 +1,34 @@
+<div class="row">
+  <h1>
+    <div class="col-md-4">Checkout</div>
+    <div class="col-md-8">
+      <small>
+        <%= link_to 'ADDRESS', wizard_path(:address) %> | <strong>DELIVERY</strong> | PAYMENT | CONFIRM | COMPLETE
+      </small>
+    </div>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <h3>DELIVERY WAY</h3>
+    <%= form_for @order, url: wizard_path, method: :put do |f| %>
+      <div class="field">
+        <%= f.radio_button :delivery, 5.0 %> UPS Ground + $5.00 <br>
+        <%= f.radio_button :delivery, 10.0 %> UPS Two Days + $10.00 <br>
+        <%= f.radio_button :delivery, 15.0 %> UPS One Day + $15.00 <br>
+      </div>
+
+      <br>
+      <div class="actions">
+        <%= f.submit 'Save & Continue' %>
+      </div>      
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <h3>ORDER SUMMARY</h3>
+    <p>ORDER TOTAL: $<%= @order.total_price %></p>
+  </div>
+
+</div>

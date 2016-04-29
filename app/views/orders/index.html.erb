@@ -1,0 +1,102 @@
+<h1><%= t('.title') %></h1>
+
+<% if @in_progress_order %>
+  <div class="row">
+    <br>
+    <strong><%= t('.in_progress') %></strong><hr>
+
+    <table class="table table-hover">
+    
+      <thead>
+        <tr>
+          <th><%= t('table.book') %></th>
+          <th><%= t('table.price') %></th>
+          <th><%= t('table.qty') %></th>
+          <th><%= t('table.total') %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @in_progress_order.order_items.each do |order_item| %>
+          <tr>
+            <td>
+              <h3><%= order_item.book.title %></h3>
+              <p><%= order_item.book.description %></p>
+            </td>
+            <td><strong>$<%= order_item.book.price %></strong></td>
+            <td><%= order_item.quantity %></td>
+            <td>$<%= order_item.price %></td>
+          </tr>
+        <% end %>
+
+        <tr>
+          <td></td>
+          <td><strong><%= t('table.sub_total') %></strong></td>
+          <td></td>
+          <td>$<%= @in_progress_order.total_price %></td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+  <div class="row"><%= link_to t('.go_to_cart'), cart_path %></div>
+<% end %>
+
+<% if @completed_orders %>
+  <div class="row">
+    <br>
+    <strong><%= t('.in_delivery') %></strong><hr>
+    
+    <table class="table table-hover">
+    
+      <thead>
+        <tr>
+          <th><%= t('table.number') %></th>
+          <th><%= t('table.completed_at') %></th>
+          <th><%= t('table.total') %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @completed_orders.each do |order| %>
+          <tr>
+            <td><%= link_to order.id, order %></td>
+            <td><%= order.updated_at %></td>
+            <td>$<%= order.total_price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table> 
+  </div>
+<% end %>
+
+<% if @shipped_orders %>
+  <div class="row">
+    <br>
+    <strong><%= t('.delivered') %></strong><hr>
+    
+    <table class="table table-hover">
+    
+      <thead>
+        <tr>
+          <th><%= t('table.number') %></th>
+          <th><%= t('table.completed_at') %></th>
+          <th><%= t('table.total') %></th>        
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @shipped_orders.each do |order| %>
+          <tr>
+            <td><%= link_to order.id, order %></td>
+            <td><%= order.updated_at %></td>
+            <td>$<%= order.total_price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table> 
+  </div>
+<% end %>
+

@@ -1,0 +1,55 @@
+<div class="row">
+  <h1>
+    <div class="col-md-4">Checkout</div>
+    <div class="col-md-8">
+      <small>
+        <%= link_to 'ADDRESS', wizard_path(:address) %> | 
+        <%= link_to 'DELIVERY', wizard_path(:delivery) %> | 
+        <strong>PAYMENT</strong> | 
+        CONFIRM | COMPLETE
+      </small>
+    </div>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <h3>CREDIT CARD</h3>
+
+    <%= form_for @order, url: wizard_path, method: :put do |order_form| %>
+      <%= order_form.fields_for :credit_card do |credit_card_fields| %>
+        
+        <div class="field">
+          <%= credit_card_fields.text_field :number, placeholder: 'Card Number' %>
+        </div>
+        
+        <br>
+        
+        Expiration date:
+        
+        <div class="field">
+          <%= credit_card_fields.date_select :expiration_date, discard_day: true, order: [:month, :year] %>
+        </div> 
+        
+        <br>
+        
+        <div class="field">
+          <%= credit_card_fields.text_field :cvv, placeholder: 'Card Code (CVV)' %>
+        </div> 
+      <% end %>
+
+      <br>
+      
+      <div class="actions">
+        <%= order_form.submit 'Save & Continue' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <h3>ORDER SUMMARY</h3>
+    ITEM TOTAL: $<%= @order.sub_total %><br>
+    DELIVERY: $<%= @order.delivery %><br>
+    ORDER TOTAL: $<%= @order.total_price %><br>
+  </div>
+</div>
