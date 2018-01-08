@@ -1,4 +1,5 @@
 require 'date'
+
 class CheckoutController < ApplicationController
   include Wicked::Wizard
   before_action :set_order

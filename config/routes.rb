@@ -18,11 +18,11 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
 
   resource :cart, only: [:show] 
-<<<<<<< HEAD
+# <<<<<<< HEAD
   delete 'cart/clear', to: 'carts#clear', as: 'clear_cart'
-=======
-  get 'cart/clear', to: 'carts#clear', as: 'clear_cart'
->>>>>>> fde6d69f324d2e68376e4aa63ad278214ec3cdf2
+# =======
+#   get 'cart/clear', to: 'carts#clear', as: 'clear_cart'
+# >>>>>>> fde6d69f324d2e68376e4aa63ad278214ec3cdf2
 
   get '/settings', to: 'settings#show', as: 'settings'
 
